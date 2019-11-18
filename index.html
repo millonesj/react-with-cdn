@@ -17,6 +17,7 @@
 
       constructor () {
         super();
+        this.refTxtMessage = React.createRef();
         this.state = {
           message: "my friend (from state)!"
         };
@@ -24,15 +25,17 @@
       }
 
       updateMessage () {
-        this.setState({
-          message: "my friend (from updateMessage)"
-        })
+        let txtMessage = this.refTxtMessage.current;
+        let message =  txtMessage.value;
+        this.setState({ message })
       }
+
         render() {
         return (
           <div>
             <h1>Hello {this.state.message}</h1>
-            <button onClick={this.updateMessage}>Click me!</button>
+            <input type="text" id="txtMessage" ref={this.refTxtMessage} style={{ backgroundColor: "#f8fd9d",  padding:"0.5rem"}}/>
+            <button onClick={this.updateMessage} style={{padding:".5rem"}}>Click me!</button>
           </div>
           );
       }
